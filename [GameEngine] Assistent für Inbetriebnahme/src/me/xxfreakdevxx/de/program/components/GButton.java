@@ -44,6 +44,6 @@ public class GButton extends Component {
 	public void mouseMoved(MouseEvent e) {
 		if(new Rectangle(e.getX(), e.getY(),1,1).intersects(getBounds())) useHighlight();
 		else useBackgroundBackup();
-		}
+	}
 
 }

@@ -1,6 +1,7 @@
 package me.xxfreakdevxx.de.program.components;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -14,9 +15,11 @@ public abstract class Component {
 	protected int y = 0;
 	protected int width = 0;
 	protected int height = 0;
-	protected String text = "";
+	public String text = "";
 	public GAction click_action = null;
 	public GAction hover_action = null;
+	public int max_characters = -1;
+	public Font text_font = new Font("Tahoma", Font.PLAIN, 16);
 	
 	/* Colors */
 	private Color background = Color.LIGHT_GRAY;

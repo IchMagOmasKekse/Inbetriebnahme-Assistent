@@ -14,7 +14,7 @@ public class LoginMenu extends GCanvas {
 	private int page = 0;
 	
 	public LoginMenu() {
-		setBackground(new Color(0.1f,0.1f,0.1f,0.6f));
+		setBackground(new Color(0.1f,0.1f,0.1f,0.2f));
 	}
 	private int page_backup = -9;
 	@Override
@@ -54,28 +54,40 @@ public class LoginMenu extends GCanvas {
 				break;
 			case 1:
 				components.clear();
-				btn_width = 120;
+				btn_width = 240;
 				btn_height = 40;
 				x = (Assistent.windowWidth/2);
 				y = (Assistent.windowHeight/2)-100;
 				
 				
-				GButton vorname = new GButton(x-(btn_width/2), y-(btn_height /2), btn_width, btn_height, "Vorname");
-				GButton nachname = new GButton(x-(btn_width/2), y-(btn_height /2)+btn_height+4, btn_width, btn_height, "Nachname");
+				GTextfield vorname = new GTextfield(x-(btn_width/2), y-(btn_height /2), btn_width, btn_height);
+				GTextfield nachname = new GTextfield(x-(btn_width/2), y-(btn_height /2)+btn_height+4, btn_width, btn_height);
 				
 				vorname.setBackground(new Color(0.1f,0.1f,0.1f,0.1f));
 				vorname.highlight = new Color(0.1f,0.1f,0.1f,0.6f);
+				vorname.max_characters = 36;
+				vorname.pseudo_text = "Vorname";
 				vorname.click_action = new GAction(new TimerTask() {
 					
 					@Override
 					public void run() {
-						Assistent.frame.canvas = new OperationMenu();
+						Assistent.frame.canvas.selectedComponent = vorname;
 						this.cancel();
 					}
 				}, 0, 1);
 				
 				nachname.setBackground(new Color(0.1f,0.1f,0.1f,0.1f));
 				nachname.highlight = new Color(0.1f,0.1f,0.1f,0.6f);
+				nachname.isPasswordField = true;
+				nachname.pseudo_text = "Nachname";
+				nachname.click_action = new GAction(new TimerTask() {
+					
+					@Override
+					public void run() {
+						Assistent.frame.canvas.selectedComponent = nachname;
+						this.cancel();
+					}
+				}, 0, 1);
 				
 				addComponent(new GLabel(x-60, y-(btn_height /2)-4, 20, "Ihr Name bitte"));
 				addComponent(vorname);

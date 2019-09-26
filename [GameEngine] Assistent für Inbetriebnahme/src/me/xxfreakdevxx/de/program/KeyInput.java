@@ -6,11 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import me.xxfreakdevxx.de.program.components.menus.GTextfield;
+
 
 public class KeyInput extends KeyAdapter {
 	
 	public List<String> cooldown_bypass = new LinkedList<String>();
 	public ConcurrentLinkedQueue<Integer> pressed_keys = new ConcurrentLinkedQueue<Integer>();
+	public KeyEvent event = null;
 	
 	public KeyInput() {
 		addBypass("W", "A", "S", "D");
@@ -56,6 +59,7 @@ public class KeyInput extends KeyAdapter {
 				release(key);
 				break;
 			}
+			checkForTextfield(key);
 		}
 	}
 	int height = 20;
@@ -84,13 +88,37 @@ public class KeyInput extends KeyAdapter {
 	//TODO: Get Interaction
 	@Override
 	public void keyPressed(KeyEvent e) {
+		this.event = e;
 		int key = e.getKeyCode();
 		press(key);
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
+		this.event = e;
 		int key = e.getKeyCode();
 		release(key);
+	}
+	
+	private boolean shift = false;
+	public void checkForTextfield(int key) {
+		if(Assistent.frame.canvas.selectedComponent instanceof GTextfield) {
+			String s = KeyEvent.getKeyText(key);
+			if(key == KeyEvent.VK_BACK_SPACE) {
+				((GTextfield)Assistent.frame.canvas.selectedComponent).removeLastCharakter();
+				pressed_keys.remove(key);				
+			}else if(key == KeyEvent.VK_SPACE) {
+				((GTextfield)Assistent.frame.canvas.selectedComponent).addText(" ");
+				pressed_keys.remove(key);				
+			}else {				
+				if(s.length() == 1) {
+					shift = event.isShiftDown();
+					if(shift) s = s.toUpperCase();
+					else s = s.toLowerCase();
+					((GTextfield)Assistent.frame.canvas.selectedComponent).addText(s);
+					pressed_keys.remove(key);				
+				}
+			}
+		}
 	}
 	
 	

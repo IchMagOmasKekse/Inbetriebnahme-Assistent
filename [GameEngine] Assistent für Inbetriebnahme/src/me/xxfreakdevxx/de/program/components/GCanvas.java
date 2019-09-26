@@ -9,6 +9,7 @@ import me.xxfreakdevxx.de.program.Assistent;
 public abstract class GCanvas extends Component {
 	
 	public HashMap<Integer, Component> components = new HashMap<Integer, Component>();
+	public Component selectedComponent = null;
 	
 	public GCanvas() {
 		super(0, 0, 0, 0);
