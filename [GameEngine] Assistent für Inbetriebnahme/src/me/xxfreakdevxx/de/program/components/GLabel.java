@@ -17,7 +17,7 @@ public class GLabel extends Component {
 		super(x, y, Assistent.calculateStringWidth(new Font("Arial", 0, font_size), text), font_size);
 		this.font = new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, font_size);
 		this.text = text;
-		this.background = Color.BLACK;
+		setBackground(Color.BLACK);
 	}
 	
 	int r = 0;
@@ -38,7 +38,7 @@ public class GLabel extends Component {
 				g = 0;
 				b = 0;
 			}
-			this.background = new Color(r,g,b);
+			setBackground(new Color(r,g,b));
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class GLabel extends Component {
 	@Override
 	public void render(Graphics g) {
 		if(drawBox) {
-			g.setColor(this.background);
+			g.setColor(getBackground());
 			g.fillRect(x-1, y-height+3, width+2, height+1);
 		}
 		g.setColor(Color.black);

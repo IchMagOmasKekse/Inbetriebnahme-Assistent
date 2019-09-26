@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import me.xxfreakdevxx.de.program.Assistent;
 
 public class GButton extends Component {
-
+	
 	public GButton(int x, int y, int width, int height, String text) {
 		super(x, y, width, height);
 		this.text = text;
@@ -23,7 +23,7 @@ public class GButton extends Component {
 	@Override
 	public void render(Graphics g) {
 		text_width = Assistent.calculateStringWidth(g.getFont(), text);
-		g.setColor(background);
+		g.setColor(getBackground());
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y, width, height);
@@ -37,14 +37,13 @@ public class GButton extends Component {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(getBounds().intersects(new Rectangle(e.getX(), e.getY(), 1, 1))) runClickAction();
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		if(new Rectangle(e.getX(), e.getY(),1,1).intersects(getBounds())) background = new Color(220,220,220);
-		else background = Color.LIGHT_GRAY;
-	}
+		if(new Rectangle(e.getX(), e.getY(),1,1).intersects(getBounds())) useHighlight();
+		else useBackgroundBackup();
+		}
 
 }

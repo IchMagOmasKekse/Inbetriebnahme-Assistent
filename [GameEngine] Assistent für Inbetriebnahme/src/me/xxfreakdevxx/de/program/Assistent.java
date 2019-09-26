@@ -12,8 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-import me.xxfreakdevxx.de.program.components.GCanvas;
 import me.xxfreakdevxx.de.program.components.GFrame;
+import me.xxfreakdevxx.de.program.components.menus.LoginMenu;
 
 public class Assistent extends Canvas implements Runnable {
 	
@@ -37,7 +37,7 @@ public class Assistent extends Canvas implements Runnable {
 	
 	//Manager, Handler, etc.
 	public KeyInput keyinput = null;
-	public GFrame frame = null;
+	public static GFrame frame = null;
 	
 	static Assistent instance;
 	public static Assistent getInstance() {
@@ -51,7 +51,7 @@ public class Assistent extends Canvas implements Runnable {
 	public Assistent() {
 		instance = this;
 		setBackground(Color.BLACK);
-		frame = new GFrame(windowWidth, windowHeight, "SquareCraft", new GCanvas(), this);
+		frame = new GFrame(windowWidth, windowHeight, "SquareCraft", new LoginMenu(), this);
 		start();
 	}
 	

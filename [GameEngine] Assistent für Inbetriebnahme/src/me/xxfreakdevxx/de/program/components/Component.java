@@ -15,14 +15,18 @@ public abstract class Component {
 	protected int width = 0;
 	protected int height = 0;
 	protected String text = "";
+	public GAction click_action = null;
+	public GAction hover_action = null;
 	
 	/* Colors */
-	public Color background = Color.LIGHT_GRAY;
+	private Color background = Color.LIGHT_GRAY;
+	private Color background_backup = Color.LIGHT_GRAY;
+	public Color highlight = new Color(220,220,220);
 	
 	/* Properties */
 	public boolean isEnabled = true;
 	public boolean isVisible = true;
-	public boolean drawBox = true;
+	public boolean drawBox = false;
 	
 	public Component(int x, int y, int width, int height) {
 		this.x=x;
@@ -89,6 +93,30 @@ public abstract class Component {
 	
 	public Rectangle getBounds() {
 		return new Rectangle(x,y,width,height);
+	}
+	
+	public void setBackground(Color color) {
+		this.background = color;
+		this.background_backup = color;
+	}
+	
+	public Color getBackground() {
+		return background;
+	}
+	public Color getBackgroundBackup() {
+		return background_backup;
+	}
+	public void useBackgroundBackup() {
+		this.background = background_backup;
+	}
+	public void useHighlight() {
+		this.background = highlight;
+	}
+	public void runClickAction() {
+		if(click_action != null) click_action.run();
+	}
+	public void runHoverAction() {
+		if(hover_action != null) hover_action.run();
 	}
 	
 }
