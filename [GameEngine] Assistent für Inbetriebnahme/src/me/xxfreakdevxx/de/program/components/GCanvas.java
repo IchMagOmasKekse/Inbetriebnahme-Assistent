@@ -9,7 +9,7 @@ import me.xxfreakdevxx.de.program.Assistent;
 public abstract class GCanvas extends Component {
 	
 	public HashMap<Integer, Component> components = new HashMap<Integer, Component>();
-	public Component selectedComponent = null;
+	private Component selectedComponent = null;
 	
 	public GCanvas() {
 		super(0, 0, 0, 0);
@@ -57,6 +57,16 @@ public abstract class GCanvas extends Component {
 		for(Component com : components.values()) {
 			if(com.isEnabled == true) com.tick();
 		}
+	}
+	
+	public void setSelectedComponent(Component com) {
+		if(this.selectedComponent != null) this.selectedComponent.isSelected = false;
+		this.selectedComponent = com;
+		this.selectedComponent.isSelected = true;
+	}
+	
+	public Component getSelectedComponent() {
+		return this.selectedComponent;
 	}
 
 }

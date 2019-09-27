@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import me.xxfreakdevxx.de.program.components.menus.GTextfield;
+import me.xxfreakdevxx.de.program.components.GTextfield;
 
 
 public class KeyInput extends KeyAdapter {
@@ -101,20 +101,20 @@ public class KeyInput extends KeyAdapter {
 	
 	private boolean shift = false;
 	public void checkForTextfield(int key) {
-		if(Assistent.frame.canvas.selectedComponent instanceof GTextfield) {
+		if(Assistent.frame.canvas.getSelectedComponent() instanceof GTextfield) {
 			String s = KeyEvent.getKeyText(key);
 			if(key == KeyEvent.VK_BACK_SPACE) {
-				((GTextfield)Assistent.frame.canvas.selectedComponent).removeLastCharakter();
+				((GTextfield)Assistent.frame.canvas.getSelectedComponent()).removeLastCharakter();
 				pressed_keys.remove(key);				
 			}else if(key == KeyEvent.VK_SPACE) {
-				((GTextfield)Assistent.frame.canvas.selectedComponent).addText(" ");
+				((GTextfield)Assistent.frame.canvas.getSelectedComponent()).addText(" ");
 				pressed_keys.remove(key);				
 			}else {				
 				if(s.length() == 1) {
 					shift = event.isShiftDown();
 					if(shift) s = s.toUpperCase();
 					else s = s.toLowerCase();
-					((GTextfield)Assistent.frame.canvas.selectedComponent).addText(s);
+					((GTextfield)Assistent.frame.canvas.getSelectedComponent()).addText(s);
 					pressed_keys.remove(key);				
 				}
 			}

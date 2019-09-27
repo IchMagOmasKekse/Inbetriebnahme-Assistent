@@ -1,11 +1,9 @@
-package me.xxfreakdevxx.de.program.components.menus;
+package me.xxfreakdevxx.de.program.components;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-
-import me.xxfreakdevxx.de.program.components.Component;
 
 public class GTextfield extends Component {
 	
@@ -34,6 +32,10 @@ public class GTextfield extends Component {
 		g.setFont(this.text_font);
 		g.setColor(getBackground());
 		g.fillRect(x, y, width, height);
+		if(isSelected) {
+			g.setColor(selected_color);
+			g.fillRect(x, y, width, height);
+		}
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y, width, height);
 		g.drawRect(x+1, y+1, width-2, height-2);

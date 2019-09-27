@@ -8,6 +8,7 @@ import me.xxfreakdevxx.de.program.components.GAction;
 import me.xxfreakdevxx.de.program.components.GButton;
 import me.xxfreakdevxx.de.program.components.GCanvas;
 import me.xxfreakdevxx.de.program.components.GLabel;
+import me.xxfreakdevxx.de.program.components.GTextfield;
 
 public class LoginMenu extends GCanvas {
 	
@@ -66,30 +67,30 @@ public class LoginMenu extends GCanvas {
 				vorname.setBackground(new Color(0.1f,0.1f,0.1f,0.1f));
 				vorname.highlight = new Color(0.1f,0.1f,0.1f,0.6f);
 				vorname.max_characters = 36;
-				vorname.pseudo_text = "Vorname";
+				vorname.pseudo_text = "Dienstausweis Nummer";
 				vorname.click_action = new GAction(new TimerTask() {
 					
 					@Override
 					public void run() {
-						Assistent.frame.canvas.selectedComponent = vorname;
-						this.cancel();
+						Assistent.frame.canvas.setSelectedComponent(vorname);
+						vorname.click_action.cancel();
 					}
 				}, 0, 1);
 				
 				nachname.setBackground(new Color(0.1f,0.1f,0.1f,0.1f));
 				nachname.highlight = new Color(0.1f,0.1f,0.1f,0.6f);
 				nachname.isPasswordField = true;
-				nachname.pseudo_text = "Nachname";
+				nachname.pseudo_text = "Optional";
 				nachname.click_action = new GAction(new TimerTask() {
 					
 					@Override
 					public void run() {
-						Assistent.frame.canvas.selectedComponent = nachname;
-						this.cancel();
+						Assistent.frame.canvas.setSelectedComponent(nachname);
+						nachname.click_action.cancel();
 					}
 				}, 0, 1);
 				
-				addComponent(new GLabel(x-60, y-(btn_height /2)-4, 20, "Ihr Name bitte"));
+				addComponent(new GLabel(x-110, y-(btn_height /2)-4, 20, "Geben Sie Ihre Daten an"));
 				addComponent(vorname);
 				addComponent(nachname);
 				break;

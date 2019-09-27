@@ -20,6 +20,8 @@ public abstract class Component {
 	public GAction hover_action = null;
 	public int max_characters = -1;
 	public Font text_font = new Font("Tahoma", Font.PLAIN, 16);
+	public boolean isSelected = false;
+	public Color selected_color = new Color(0f,0.2f,1f,0.3f);
 	
 	/* Colors */
 	private Color background = Color.LIGHT_GRAY;
@@ -116,7 +118,10 @@ public abstract class Component {
 		this.background = highlight;
 	}
 	public void runClickAction() {
-		if(click_action != null) click_action.run();
+		if(click_action != null) {
+			click_action.cancel();
+			click_action.run();
+		}
 	}
 	public void runHoverAction() {
 		if(hover_action != null) hover_action.run();
